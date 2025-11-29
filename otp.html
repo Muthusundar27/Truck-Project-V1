@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification - Truck Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="spinner-overlay" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- OTP Verification Page -->
+    <div class="auth-container">
+        <div class="auth-card">
+            <h2>OTP Verification</h2>
+            <p class="otp-message">Enter the 5-digit code sent to your phone</p>
+            <form id="otp-form">
+                <div class="otp-inputs">
+                    <input type="text" maxlength="1" class="otp-box" data-index="0">
+                    <input type="text" maxlength="1" class="otp-box" data-index="1">
+                    <input type="text" maxlength="1" class="otp-box" data-index="2">
+                    <input type="text" maxlength="1" class="otp-box" data-index="3">
+                    <input type="text" maxlength="1" class="otp-box" data-index="4">
+                </div>
+                <div class="otp-timer">
+                    <span id="timer-display">00:30</span>
+                </div>
+                <button type="submit" class="btn btn-primary">Verify OTP</button>
+                <button type="button" id="resend-otp" class="btn btn-secondary" disabled>Resend OTP</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>

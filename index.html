@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truck Management System</title>
+    <script>
+        window.location.href = 'login.html';
+    </script>
+</head>
+<body>
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="spinner-overlay" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login-page" class="page active">
+        <div class="auth-container">
+            <div class="auth-card">
+                <h1>Truck Management System</h1>
+                <h2>Login</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-phone">Phone Number</label>
+                        <input type="tel" id="login-phone" placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <p class="auth-link">Don't have an account? <a href="#" id="go-to-signup">Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Page -->
+    <div id="signup-page" class="page">
+        <div class="auth-container">
+            <div class="auth-card">
+                <h2>Sign Up</h2>
+                <form id="signup-form">
+                    <div class="form-group">
+                        <label for="signup-fullname">Full Name</label>
+                        <input type="text" id="signup-fullname" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-phone">Phone Number</label>
+                        <input type="tel" id="signup-phone" placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-address">Address</label>
+                        <input type="text" id="signup-address" placeholder="Enter your address" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="signup-city">City</label>
+                            <input type="text" id="signup-city" placeholder="City" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-state">State</label>
+                            <input type="text" id="signup-state" placeholder="State" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-zip">ZIP Code</label>
+                            <input type="text" id="signup-zip" placeholder="ZIP" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-company">Company (Optional)</label>
+                        <input type="text" id="signup-company" placeholder="Enter company name">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
+                <p class="auth-link">Already have an account? <a href="#" id="go-to-login">Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- OTP Verification Page -->
+    <div id="otp-page" class="page">
+        <div class="auth-container">
+            <div class="auth-card">
+                <h2>OTP Verification</h2>
+                <p class="otp-message">Enter the 5-digit code sent to your phone</p>
+                <form id="otp-form">
+                    <div class="otp-inputs">
+                        <input type="text" maxlength="1" class="otp-box" data-index="0">
+                        <input type="text" maxlength="1" class="otp-box" data-index="1">
+                        <input type="text" maxlength="1" class="otp-box" data-index="2">
+                        <input type="text" maxlength="1" class="otp-box" data-index="3">
+                        <input type="text" maxlength="1" class="otp-box" data-index="4">
+                    </div>
+                    <div class="otp-timer">
+                        <span id="timer-display">00:30</span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Verify OTP</button>
+                    <button type="button" id="resend-otp" class="btn btn-secondary" disabled>Resend OTP</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboard-page" class="page">
+        <nav class="navbar">
+            <div class="nav-content">
+                <h1>Truck Management System</h1>
+                <button id="logout-btn" class="btn btn-danger">Logout</button>
+            </div>
+        </nav>
+        
+        <div class="container">
+            <div class="dashboard-header">
+                <h2 id="greeting-message">Welcome back!</h2>
+            </div>
+
+            <div class="stats-cards">
+                <div class="stat-card income-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-info">
+                        <h3>Total Income</h3>
+                        <p class="stat-value" id="total-income">₹0</p>
+                    </div>
+                </div>
+                <div class="stat-card expense-card">
+                    <div class="stat-icon">💸</div>
+                    <div class="stat-info">
+                        <h3>Total Expense</h3>
+                        <p class="stat-value" id="total-expense">₹0</p>
+                    </div>
+                </div>
+                <div class="stat-card profit-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-info">
+                        <h3>Net Profit</h3>
+                        <p class="stat-value" id="net-profit">₹0</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="truck-selection">
+                <label for="truck-filter">Select Truck:</label>
+                <select id="truck-filter">
+                    <option value="all">All Trucks</option>
+                </select>
+                <div class="truck-buttons" id="truck-buttons"></div>
+            </div>
+
+            <div class="chart-container">
+                <h3>Income vs Expense</h3>
+                <canvas id="incomeExpenseChart"></canvas>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-success" id="add-income-btn">+ Add Income</button>
+                <button class="btn btn-danger" id="add-expense-btn">+ Add Expense</button>
+                <button class="btn btn-primary" id="add-truck-btn">+ Add Truck</button>
+            </div>
+
+            <div class="alerts-section" id="alerts-section">
+                <h3>Upcoming Due Dates</h3>
+                <div id="alerts-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Truck Page -->
+    <div id="add-truck-page" class="page">
+        <nav class="navbar">
+            <div class="nav-content">
+                <button class="btn btn-back" id="back-to-dashboard-1">← Back</button>
+                <h1>Add New Truck</h1>
+            </div>
+        </nav>
+
+        <div class="container">
+            <form id="add-truck-form" class="form-card">
+                <div class="form-group">
+                    <label for="vehicle-no">Vehicle Number</label>
+                    <input type="text" id="vehicle-no" placeholder="e.g., MH12AB1234" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="truck-model">Model</label>
+                    <select id="truck-model" required>
+                        <option value="">Select Model</option>
+                        <option value="Tata 407">Tata 407</option>
+                        <option value="Tata 709">Tata 709</option>
+                        <option value="Tata LPT 1109">Tata LPT 1109</option>
+                        <option value="Ashok Leyland Dost">Ashok Leyland Dost</option>
+                        <option value="Mahindra Bolero Pickup">Mahindra Bolero Pickup</option>
+                        <option value="Eicher Pro 2049">Eicher Pro 2049</option>
+                        <option value="Bharat Benz 1217C">Bharat Benz 1217C</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tyre-count">Tyre Count</label>
+                        <input type="number" id="tyre-count" placeholder="e.g., 6" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="diesel-qty">Diesel Quantity (L)</label>
+                        <input type="number" id="diesel-qty" placeholder="e.g., 100" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="truck-owner">Owner Name</label>
+                    <input type="text" id="truck-owner" placeholder="Enter owner name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Is Due Applicable?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="is-due" value="yes" required> Yes</label>
+                        <label><input type="radio" name="is-due" value="no"> No</label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="due-date">Due Date</label>
+                        <input type="date" id="due-date">
+                    </div>
+                    <div class="form-group">
+                        <label for="pollution-date">Pollution Due</label>
+                        <input type="date" id="pollution-date">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tax-date">Tax Due</label>
+                        <input type="date" id="tax-date">
+                    </div>
+                    <div class="form-group">
+                        <label for="insurance-date">Insurance Due</label>
+                        <input type="date" id="insurance-date">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fc-date">FC Due</label>
+                        <input type="date" id="fc-date">
+                    </div>
+                    <div class="form-group">
+                        <label for="permit-date">Permit Due</label>
+                        <input type="date" id="permit-date">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="emi-amount">EMI Amount</label>
+                        <input type="number" id="emi-amount" placeholder="Enter EMI amount">
+                    </div>
+                    <div class="form-group">
+                        <label for="loan-provider">Loan Provider</label>
+                        <input type="text" id="loan-provider" placeholder="Enter loan provider">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="truck-documents">Upload Documents</label>
+                    <input type="file" id="truck-documents" multiple accept="image/*,.pdf">
+                    <div id="truck-file-preview" class="file-preview"></div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Add Truck</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Income Page -->
+    <div id="add-income-page" class="page">
+        <nav class="navbar">
+            <div class="nav-content">
+                <button class="btn btn-back" id="back-to-dashboard-2">← Back</button>
+                <h1>Add Income</h1>
+            </div>
+        </nav>
+
+        <div class="container">
+            <form id="add-income-form" class="form-card">
+                <div class="form-group">
+                    <label for="income-vehicle">Select Vehicle</label>
+                    <select id="income-vehicle" required>
+                        <option value="">Select Vehicle</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="income-amount">Amount (₹)</label>
+                    <input type="number" id="income-amount" placeholder="Enter amount" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="income-notes">Notes</label>
+                    <textarea id="income-notes" rows="3" placeholder="Enter notes"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Payment Status</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="payment-status" value="paid" required> Paid</label>
+                        <label><input type="radio" name="payment-status" value="unpaid"> Unpaid</label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="payer-company">Payer Company</label>
+                        <input type="text" id="payer-company" placeholder="Enter company name">
+                    </div>
+                    <div class="form-group">
+                        <label for="payer-mobile">Payer Mobile</label>
+                        <input type="tel" id="payer-mobile" placeholder="Enter mobile number">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="income-documents">Upload Documents</label>
+                    <input type="file" id="income-documents" multiple accept="image/*,.pdf">
+                    <div id="income-file-preview" class="file-preview"></div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success">Add Income</button>
+                    <button type="button" id="notify-btn" class="btn btn-secondary">Send Notification</button>
+                </div>
+            </form>
+
+            <div class="payment-list-section">
+                <h3>Recent Payments</h3>
+                <div class="filter-group">
+                    <label>Filter by:</label>
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="paid">Paid</button>
+                    <button class="filter-btn" data-filter="unpaid">Unpaid</button>
+                    <button class="filter-btn" data-filter="last-3-months">Last 3 Months</button>
+                </div>
+                <div id="payment-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Expense Page -->
+    <div id="add-expense-page" class="page">
+        <nav class="navbar">
+            <div class="nav-content">
+                <button class="btn btn-back" id="back-to-dashboard-3">← Back</button>
+                <h1>Add Expense</h1>
+            </div>
+        </nav>
+
+        <div class="container">
+            <form id="add-expense-form" class="form-card">
+                <div class="form-group">
+                    <label for="expense-vehicle">Select Vehicle</label>
+                    <select id="expense-vehicle" required>
+                        <option value="">Select Vehicle</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="expense-amount">Amount (₹)</label>
+                    <input type="number" id="expense-amount" placeholder="Enter amount" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="expense-category">Category</label>
+                    <select id="expense-category" required>
+                        <option value="">Select Category</option>
+                        <option value="Fuel">Fuel</option>
+                        <option value="Maintenance">Maintenance</option>
+                        <option value="Tyre">Tyre</option>
+                        <option value="Insurance">Insurance</option>
+                        <option value="Tax">Tax</option>
+                        <option value="Permit">Permit</option>
+                        <option value="Pollution">Pollution</option>
+                        <option value="FC">FC</option>
+                        <option value="Repair">Repair</option>
+                        <option value="Driver Salary">Driver Salary</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="expense-description">Description</label>
+                    <textarea id="expense-description" rows="3" placeholder="Enter description" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="expense-details">Other Details</label>
+                    <textarea id="expense-details" rows="2" placeholder="Enter additional details"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="expense-documents">Upload Documents (Required)</label>
+                    <input type="file" id="expense-documents" multiple accept="image/*,.pdf" required>
+                    <div id="expense-file-preview" class="file-preview"></div>
+                </div>
+
+                <button type="submit" class="btn btn-danger">Add Expense</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Logout Confirmation Modal -->
+    <div id="logout-modal" class="modal">
+        <div class="modal-content">
+            <h3>Confirm Logout</h3>
+            <p>Are you sure you want to logout?</p>
+            <div class="modal-actions">
+                <button id="confirm-logout" class="btn btn-danger">Yes, Logout</button>
+                <button id="cancel-logout" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

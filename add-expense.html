@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Expense - Truck Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="spinner-overlay" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Add Expense Page -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <button class="btn btn-back" id="back-to-dashboard">← Back</button>
+            <h1>Add Expense</h1>
+        </div>
+    </nav>
+
+    <div class="container">
+        <form id="add-expense-form" class="form-card">
+            <div class="form-group">
+                <label for="expense-vehicle">Select Vehicle</label>
+                <select id="expense-vehicle" required>
+                    <option value="">Select Vehicle</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="expense-amount">Amount (₹)</label>
+                <input type="number" id="expense-amount" placeholder="Enter amount" required>
+            </div>
+
+            <div class="form-group">
+                <label for="expense-category">Category</label>
+                <select id="expense-category" required>
+                    <option value="">Select Category</option>
+                    <option value="Fuel">Fuel</option>
+                    <option value="Maintenance">Maintenance</option>
+                    <option value="Tyre">Tyre</option>
+                    <option value="Insurance">Insurance</option>
+                    <option value="Tax">Tax</option>
+                    <option value="Permit">Permit</option>
+                    <option value="Pollution">Pollution</option>
+                    <option value="FC">FC</option>
+                    <option value="Repair">Repair</option>
+                    <option value="Driver Salary">Driver Salary</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="expense-description">Description</label>
+                <textarea id="expense-description" rows="3" placeholder="Enter description" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="expense-details">Other Details</label>
+                <textarea id="expense-details" rows="2" placeholder="Enter additional details"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="expense-documents">Upload Documents (Required)</label>
+                <input type="file" id="expense-documents" multiple accept="image/*,.pdf" required>
+                <div id="expense-file-preview" class="file-preview"></div>
+            </div>
+
+            <button type="submit" class="btn btn-danger">Add Expense</button>
+        </form>
+    </div>
+
+    <script src="expense.js"></script>
+</body>
+</html>

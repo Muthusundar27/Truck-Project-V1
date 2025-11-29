@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Truck Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="spinner-overlay" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <h1>Truck Management System</h1>
+            <button id="logout-btn" class="btn btn-danger">Logout</button>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="dashboard-header">
+            <h2 id="greeting-message">Welcome back!</h2>
+        </div>
+
+        <div class="stats-cards">
+            <div class="stat-card income-card">
+                <div class="stat-icon">💰</div>
+                <div class="stat-info">
+                    <h3>Total Income</h3>
+                    <p class="stat-value" id="total-income">₹0</p>
+                </div>
+            </div>
+            <div class="stat-card expense-card">
+                <div class="stat-icon">💸</div>
+                <div class="stat-info">
+                    <h3>Total Expense</h3>
+                    <p class="stat-value" id="total-expense">₹0</p>
+                </div>
+            </div>
+            <div class="stat-card profit-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-info">
+                    <h3>Net Profit</h3>
+                    <p class="stat-value" id="net-profit">₹0</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="truck-selection">
+            <label for="truck-filter">Select Truck:</label>
+            <select id="truck-filter">
+                <option value="all">All Trucks</option>
+            </select>
+            <div class="truck-buttons" id="truck-buttons"></div>
+        </div>
+
+        <div class="chart-container">
+            <h3>Income vs Expense</h3>
+            <canvas id="incomeExpenseChart"></canvas>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-success" id="add-income-btn">+ Add Income</button>
+            <button class="btn btn-danger" id="add-expense-btn">+ Add Expense</button>
+            <button class="btn btn-primary" id="add-truck-btn">+ Add Truck</button>
+        </div>
+
+        <div class="alerts-section" id="alerts-section">
+            <h3>Upcoming Due Dates</h3>
+            <div id="alerts-list"></div>
+        </div>
+    </div>
+
+    <!-- Logout Confirmation Modal -->
+    <div id="logout-modal" class="modal">
+        <div class="modal-content">
+            <h3>Confirm Logout</h3>
+            <p>Are you sure you want to logout?</p>
+            <div class="modal-actions">
+                <button id="confirm-logout" class="btn btn-danger">Yes, Logout</button>
+                <button id="cancel-logout" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

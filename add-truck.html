@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Truck - Truck Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="spinner-overlay" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Add Truck Page -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <button class="btn btn-back" id="back-to-dashboard">← Back</button>
+            <h1>Add New Truck</h1>
+        </div>
+    </nav>
+
+    <div class="container">
+        <form id="add-truck-form" class="form-card">
+            <div class="form-group">
+                <label for="vehicle-no">Vehicle Number</label>
+                <input type="text" id="vehicle-no" placeholder="e.g., MH12AB1234" required>
+            </div>
+
+            <div class="form-group">
+                <label for="truck-model">Model</label>
+                <select id="truck-model" required>
+                    <option value="">Select Model</option>
+                    <option value="Tata 407">Tata 407</option>
+                    <option value="Tata 709">Tata 709</option>
+                    <option value="Tata LPT 1109">Tata LPT 1109</option>
+                    <option value="Ashok Leyland Dost">Ashok Leyland Dost</option>
+                    <option value="Mahindra Bolero Pickup">Mahindra Bolero Pickup</option>
+                    <option value="Eicher Pro 2049">Eicher Pro 2049</option>
+                    <option value="Bharat Benz 1217C">Bharat Benz 1217C</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="tyre-count">Tyre Count</label>
+                    <input type="number" id="tyre-count" placeholder="e.g., 6" required>
+                </div>
+                <div class="form-group">
+                    <label for="diesel-qty">Diesel Quantity (L)</label>
+                    <input type="number" id="diesel-qty" placeholder="e.g., 100" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="truck-owner">Owner Name</label>
+                <input type="text" id="truck-owner" placeholder="Enter owner name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Is Due Applicable?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="is-due" value="yes" required> Yes</label>
+                    <label><input type="radio" name="is-due" value="no"> No</label>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="due-date">Due Date</label>
+                    <input type="date" id="due-date">
+                </div>
+                <div class="form-group">
+                    <label for="pollution-date">Pollution Due</label>
+                    <input type="date" id="pollution-date">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="tax-date">Tax Due</label>
+                    <input type="date" id="tax-date">
+                </div>
+                <div class="form-group">
+                    <label for="insurance-date">Insurance Due</label>
+                    <input type="date" id="insurance-date">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fc-date">FC Due</label>
+                    <input type="date" id="fc-date">
+                </div>
+                <div class="form-group">
+                    <label for="permit-date">Permit Due</label>
+                    <input type="date" id="permit-date">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="emi-amount">EMI Amount</label>
+                    <input type="number" id="emi-amount" placeholder="Enter EMI amount">
+                </div>
+                <div class="form-group">
+                    <label for="loan-provider">Loan Provider</label>
+                    <input type="text" id="loan-provider" placeholder="Enter loan provider">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="truck-documents">Upload Documents</label>
+                <input type="file" id="truck-documents" multiple accept="image/*,.pdf">
+                <div id="truck-file-preview" class="file-preview"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add Truck</button>
+        </form>
+    </div>
+
+    <script src="truck.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Income - Truck Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="spinner-overlay" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Add Income Page -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <button class="btn btn-back" id="back-to-dashboard">← Back</button>
+            <h1>Add Income</h1>
+        </div>
+    </nav>
+
+    <div class="container">
+        <form id="add-income-form" class="form-card">
+            <div class="form-group">
+                <label for="income-vehicle">Select Vehicle</label>
+                <select id="income-vehicle" required>
+                    <option value="">Select Vehicle</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="income-amount">Amount (₹)</label>
+                <input type="number" id="income-amount" placeholder="Enter amount" required>
+            </div>
+
+            <div class="form-group">
+                <label for="income-notes">Notes</label>
+                <textarea id="income-notes" rows="3" placeholder="Enter notes"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Payment Status</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="payment-status" value="paid" required> Paid</label>
+                    <label><input type="radio" name="payment-status" value="unpaid"> Unpaid</label>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="payer-company">Payer Company</label>
+                    <input type="text" id="payer-company" placeholder="Enter company name">
+                </div>
+                <div class="form-group">
+                    <label for="payer-mobile">Payer Mobile</label>
+                    <input type="tel" id="payer-mobile" placeholder="Enter mobile number">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="income-documents">Upload Documents</label>
+                <input type="file" id="income-documents" multiple accept="image/*,.pdf">
+                <div id="income-file-preview" class="file-preview"></div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-success">Add Income</button>
+                <button type="button" id="notify-btn" class="btn btn-secondary">Send Notification</button>
+            </div>
+        </form>
+
+        <div class="payment-list-section">
+            <h3>Recent Payments</h3>
+            <div class="filter-group">
+                <label>Filter by:</label>
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="paid">Paid</button>
+                <button class="filter-btn" data-filter="unpaid">Unpaid</button>
+                <button class="filter-btn" data-filter="last-3-months">Last 3 Months</button>
+            </div>
+            <div id="payment-list"></div>
+        </div>
+    </div>
+
+    <script src="income.js"></script>
+</body>
+</html>
